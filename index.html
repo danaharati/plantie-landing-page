@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<!--
+  Plantie - דף נחיתה
+  מבוסס במדויק על העיצוב בפיגמה: fileKey E1MxxsL20MpFHz5dizTZqy, frame "Landing page" (node 196:1184)
+  https://www.figma.com/design/E1MxxsL20MpFHz5dizTZqy/plantie?node-id=196-1184
+
+  גיליון עבודה (Messaging worksheet) - מתוך שלב 1 המקורי, עדיין תקף:
+  1. קהל: מי שכבר גר עם צמח (או שוקל צמח) ולא באמת מכיר אותו / לא בטוח איך לטפל בו נכון.
+  2. פעולה יחידה: להיכנס לפרוטוטייפ החי ולנסות לזהות צמח.
+  3. הוכחה: ציטוט אמיתי מראיונות המשתמשים שקדמו למוצר (ראו interviews/INTERVIEWS.md).
+  4. התנגדות מרכזית: "אני לא ממש צריך אפליקציה בשביל זה" - נענית בסעיף הבעיה (הצמח גר איתכם...) ובזרימת 3 הצעדים.
+  5. כפתור: "יאללה, בואו נתחיל!" - זהה בכל מקום בדף, מוביל לפרוטוטייפ החי.
+  שינוי מרכזי מול הבנייה הקודמת: העיצוב הזה סופק במלואו בפיגמה על ידי המשתמשת ומחליף את שלבי
+  ה-wireframe/graphic-language הקודמים. מצב כהה הוסר לגמרי לפי בקשה מפורשת - יום בלבד.
+
+  עדכון: תמונת ההירו (טלפון + עציץ) הוחלפה בקובץ האמיתי שהמשתמשת ציינה שיש לה מוכן
+  ("Phone and plant mockup.png", מתוך Assets\) - בדיוק אותו קובץ שהפיגמה משכה ממנו (יחס הממדים
+  שלו, 2634x2247, תואם במדויק ליחס הרכיב בפיגמה, 727x620). נדחס ל-WebP עם גיבוי PNG כדי לא
+  לגרור קובץ מקור של 3.6MB לדף חי.
+
+  החלטות תוכן שהתקבלו מהמשתמשת בשיחה (לא הומצאו):
+  - אזור "Video Scrubbing" בפיגמה היה placeholder טקסטואלי בלבד. המשתמשת סיפקה את הקובץ האמיתי
+    (Video Scrubbing_1000-720.mp4, מתוך Assets\Video Scrubbing\ - יש שם גם קובץ עריכה .aep, מה שמאשר
+    שזו אנימציה שנועדה להיות "מגוללת" ולא מונגנת כווידאו רגיל). לכן האזור מוצג כרצף פריימים אמיתי
+    (97 פריימי WebP שחולצו מהסרטון) שמתקדם לפי גלילת המשתמש במסך מלא (scroll-linked scrubbing),
+    ולא כתגית video עם נגינה/לולאה. תחת prefers-reduced-motion, או ללא JS, מוצג פריים סטטי בודד
+    (הפריים האחרון, מצב הסיום של האנימציה) בלי נעילת גלילה.
+  - אזור "שאלות" בפיגמה כלל רק כותרת בלי שאלות/תשובות מעוצבות, ואין מסמך FAQ אמיתי בפרויקט -
+    המשתמשת ביקשה מפורשות שאכתוב 5 שאלות ותשובות, מבוססות רק על עובדות אמיתיות ומתועדות על המוצר
+    (PRD.md, DESIGN_SYSTEM_TOKENS.md) - לא הומצאו נתונים עסקיים (מחיר, זמינות) שאינם מתועדים.
+  - הציטוט בפיגמה הכיל שגיאת הקלדה ("וממ שלא") - תוקן לנוסח המדויק מהראיון המקורי
+    (interviews/INTERVIEWS.md: "וממש לא יודע איך קוראים לו").
+  - כפתור הסגירה בפיגמה היה מנוסח בצורה לא ברורה ("כבר על הדף! להוריד?") - הוחלף, לפי בחירת
+    המשתמשת, באותו נוסח כפתור בדיוק כמו בהירו ("יאללה, בואו נתחיל!").
+
+  עדכון 2026-09-14:
+  - פונט: הוחלף מ-Rubik ל-Google Sans האמיתי. בבדיקה קודמת בשיחה הזו נמצא ש-Google Sans הציבורי
+    ב-Google Fonts לא כלל כיסוי עברית - המשתמשת עדכנה שזה השתנה, ואומת ישירות מול
+    https://fonts.googleapis.com/css2?family=Google+Sans (משקלים 400/500/600/700): קיים @font-face
+    ייעודי ל-subset "hebrew" עם unicode-range שמכסה את בלוק העברית (U+0590-05FF) וצורות פרזנטציה
+    עבריות (U+FB1D-FB4F) בכל המשקלים - אומת גם ויזואלית בדף הדוגמה של Google Fonts.
+  - כפתורי "יאללה, בואו נתחיל!" (הירו + סגירה) עודכנו מנתיב יחסי זמני (../site-for-upload/home.html)
+    לכתובת החיה בפועל של האפליקציה: https://danaharati.github.io/plantie/.
+  - עדכון נוסף באותו יום: הקישור שונה מ-home.html (מדף הבית ישירות) לכתובת השורש של האפליקציה
+    (https://danaharati.github.io/plantie/) - לפי בקשת המשתמשת, כדי שהכפתור יוביל קודם למסך
+    הטעינה (splash) והתחברות, ולא ידלג ישירות למסך הבית.
+-->
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Plantie - זיהוי צמחים וטיפול מותאם</title>
+<meta name="description" content="מצלמים את הצמח, מקבלים זיהוי והנחיות טיפול מותאמות. פלנטי היא אפליקציית זיהוי וטיפול בצמחים." />
+<meta property="og:title" content="Plantie - זיהוי צמחים וטיפול מותאם" />
+<meta property="og:description" content="מצלמים את הצמח, מקבלים זיהוי והנחיות טיפול מותאמות." />
+<meta property="og:image" content="assets/images/phone-plant-mockup.png" />
+<meta property="og:locale" content="he_IL" />
+<meta name="theme-color" content="#F3F1ED" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light;
+
+    /* טוקנים אמיתיים מהמוצר (styles/tokens.css) */
+    --cream: #F3F1ED;
+    --dark-green: #073B1B;
+    --dark-green-80: #396249;
+    --dark-green-20: #CDD8D1;
+    --lime: #BBF75A;
+    --lime-20: #F1FDDE;
+    /* lime-10 אינו קיים ב-tokens.css הרשמי - זהו גוון בהיר יותר שהוגדר במפורש בפיגמה הזו,
+       באותה משפחת גוני לים-גרין, לשימוש נקודתי ברצועת התכונות בלבד. */
+    --lime-10: #F9FFF0;
+    --orange-20: #FFE4D7;
+    --purple-40: #E3DAFF;
+    --black: #1F1F1F;
+    --white: #FFFFFF;
+
+    --font-base: "Google Sans", -apple-system, "Segoe UI", Arial, sans-serif;
+    --wide: 1200px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-padding-block-start: 24px; }
+  body {
+    margin: 0;
+    font-family: var(--font-base);
+    background: var(--cream);
+    color: var(--black);
+    text-wrap: pretty;
+  }
+  img { max-width: 100%; display: block; }
+  h1, h2, h3, p { margin: 0; }
+  a { color: inherit; }
+  p { max-width: 65ch; }
+
+  .skip-link {
+    position: absolute;
+    inset-inline-start: 12px;
+    top: -60px;
+    background: var(--dark-green);
+    color: var(--white);
+    padding: 10px 18px;
+    border-radius: 999px;
+    z-index: 100;
+    transition: top .15s ease;
+  }
+  .skip-link:focus { top: 12px; }
+
+  :focus-visible {
+    outline: 3px solid var(--dark-green);
+    outline-offset: 2px;
+  }
+
+  .wrap {
+    max-width: var(--wide);
+    margin-inline: auto;
+    padding-inline: 24px;
+  }
+
+  /* ---------- Top scene (header + hero share one gradient background) ---------- */
+  .top-scene { position: relative; overflow: clip; }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: .6;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  /* ---------- Header ---------- */
+  .site-header {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-block: 24px;
+  }
+  .site-header img { height: 34px; width: auto; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    padding-block: 32px 56px;
+  }
+  .hero-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 32px;
+    align-items: center;
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero-copy { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+  @media (min-width: 860px) {
+    .hero-grid {
+      grid-template-columns: 1fr 1fr;
+      text-align: right;
+    }
+    .hero-copy { align-items: flex-start; order: 2; }
+    .hero-visual { order: 1; }
+  }
+  .hero h1 {
+    font-size: clamp(26px, 6vw, 48px);
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--dark-green);
+    max-width: 22ch;
+  }
+  .hero .lede {
+    font-size: clamp(17px, 3vw, 24px);
+    line-height: 1.5;
+    color: var(--dark-green);
+    max-width: 32ch;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: clamp(17px, 2.4vw, 22px);
+    padding: 16px 36px;
+    min-height: 48px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+  }
+  .btn--lime { background: var(--lime); color: var(--dark-green); }
+  .btn--lime:hover { background: var(--lime-20); }
+
+  .hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  .hero-visual img {
+    width: min(100%, 560px);
+    height: auto;
+  }
+
+  /* ---------- Features band ---------- */
+  .features {
+    background: color-mix(in srgb, var(--lime-10) 76%, var(--cream) 24%);
+    padding-block: 48px;
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    text-align: center;
+  }
+  .feature-icon {
+    width: 56px;
+    height: 56px;
+    margin-inline: auto;
+    margin-block-end: 14px;
+    color: var(--dark-green);
+  }
+  .feature-icon svg { width: 100%; height: 100%; }
+  .feature h3 {
+    font-size: clamp(15px, 2vw, 18px);
+    font-weight: 700;
+    color: var(--dark-green);
+    margin-block-end: 6px;
+  }
+  .feature p {
+    font-size: clamp(13px, 1.6vw, 15px);
+    color: var(--dark-green-80);
+    margin-inline: auto;
+  }
+
+  /* ---------- Proof / testimonial ---------- */
+  .proof {
+    padding-block: 64px;
+    background: var(--white);
+  }
+  .proof-card {
+    background: var(--dark-green-20);
+    border-radius: 30px;
+    padding: clamp(28px, 5vw, 56px) clamp(20px, 6vw, 64px);
+    text-align: center;
+    max-width: 900px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .proof-card h2 {
+    font-size: clamp(22px, 4vw, 32px);
+    font-weight: 700;
+    color: var(--dark-green);
+  }
+  .proof-card blockquote {
+    margin: 0;
+    font-size: clamp(17px, 2.6vw, 22px);
+    color: var(--dark-green);
+    font-style: normal;
+  }
+  .proof-card cite {
+    display: block;
+    font-style: normal;
+    font-size: 14px;
+    color: var(--dark-green-80);
+    margin-block-start: 20px;
+  }
+  .proof-note {
+    font-size: clamp(15px, 2.2vw, 18px);
+    color: var(--dark-green);
+    line-height: 1.6;
+    text-align: center;
+    max-width: 640px;
+    margin-inline: auto;
+  }
+  .proof-note b { font-weight: 700; }
+
+  /* ---------- Steps ---------- */
+  .steps { padding-block: 64px; background: var(--white); }
+  .steps-head { text-align: center; max-width: 640px; margin-inline: auto 0; margin-inline: auto; margin-block-end: 40px; }
+  .steps-head h2 {
+    font-size: clamp(26px, 5vw, 40px);
+    font-weight: 700;
+    color: var(--dark-green);
+    margin-block-end: 12px;
+  }
+  .steps-head p { font-size: clamp(15px, 2.2vw, 19px); color: var(--dark-green); margin-inline: auto; }
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .step-card {
+    border-radius: 30px;
+    padding: 28px 20px;
+    text-align: center;
+    box-shadow: 0 0 8px rgba(0,0,0,.08);
+  }
+  .step-card .num {
+    font-size: clamp(34px, 6vw, 48px);
+    font-weight: 700;
+    color: var(--black);
+    display: block;
+    margin-block-end: 8px;
+  }
+  .step-card h3 { font-size: clamp(17px, 2.4vw, 21px); font-weight: 700; color: var(--black); margin-block-end: 8px; }
+  .step-card p { font-size: clamp(13px, 1.8vw, 15px); color: var(--black); margin-inline: auto; }
+  .step-card--01 { background: var(--orange-20); }
+  .step-card--02 { background: var(--purple-40); }
+  .step-card--03 { background: var(--lime-20); }
+
+  /* ---------- FAQ ---------- */
+  .faq { padding-block: 64px; background: var(--white); }
+  .faq h2 {
+    text-align: center;
+    font-size: clamp(26px, 5vw, 40px);
+    font-weight: 700;
+    color: var(--dark-green);
+    margin-block-end: 32px;
+  }
+  .faq-list { max-width: 760px; margin-inline: auto; display: flex; flex-direction: column; gap: 12px; }
+  .faq-item {
+    border: 1px solid var(--dark-green-20);
+    border-radius: 16px;
+    padding: 4px 20px;
+    background: var(--cream);
+  }
+  .faq-item summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding-block: 16px;
+    font-weight: 600;
+    font-size: clamp(15px, 2vw, 18px);
+    color: var(--dark-green);
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary .chev {
+    width: 20px; height: 20px; flex: none;
+    transition: transform .2s ease;
+  }
+  .faq-item[open] summary .chev { transform: rotate(180deg); }
+  .faq-item p {
+    padding-block-end: 18px;
+    font-size: clamp(14px, 1.8vw, 16px);
+    color: var(--dark-green-80);
+    line-height: 1.6;
+  }
+  /* ---------- Closing band: רוחב מלא של הדף (כמו בפיגמה - Rectangle 22 נמתח על כל 1440px),
+     תמונת המדף בגודל טבעי/קטן (לא מוגדלת/גולשת), טקסט מיושר לימין. ---------- */
+  .closing { background: var(--dark-green-20); padding-block: 56px; }
+  .closing-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    gap: 28px;
+    text-align: center;
+  }
+  .closing-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .closing-copy h2 {
+    font-size: clamp(24px, 5vw, 36px);
+    font-weight: 700;
+    color: var(--dark-green);
+    max-width: 18ch;
+  }
+  .closing-copy p {
+    font-size: clamp(15px, 2.2vw, 19px);
+    color: var(--dark-green);
+    max-width: 36ch;
+    text-wrap: balance; /* מפצל לשתי שורות מאוזנות, במקום שורה ארוכה + 3 מילים בודדות */
+  }
+  .closing .btn--dark { background: var(--dark-green); color: var(--cream); }
+  .closing .btn--dark:hover { background: var(--dark-green-80); }
+  .closing-visual img {
+    width: 100%;
+    max-width: 460px;
+    height: auto;
+    margin-inline: auto;
+    display: block;
+  }
+
+  @media (min-width: 760px) {
+    /* עמודת התמונה רחבה יותר מעמודת הטקסט, כדי לתת למדף נפח דומה לפרופורציה בפיגמה */
+    .closing-grid { grid-template-columns: 1fr 1.3fr; text-align: right; }
+    .closing-copy { align-items: flex-start; }
+    .closing-visual img { max-width: 640px; margin-inline: 0; }
+  }
+
+  /* ---------- Video Scrubbing (scroll-linked frame sequence, full-bleed) ---------- */
+  .motion {
+    position: relative;
+    background: var(--cream);
+  }
+  .motion .scrub-pin {
+    position: relative;
+    width: 100%;
+  }
+  .motion .scrub-fallback {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .motion canvas { display: none; }
+
+  /* מצב מוגבר: אחרי שכל הפריימים נטענו, הופכים לאזור נעול-גלילה (pin) שממלא את המסך.
+     הגובה בפועל (כמה גלילה מוקדשת לסקראב) נקבע ב-JS לפי גובה הפין בפועל (ראו script). */
+  .motion.motion--scrub { height: 250vh; }
+  .motion.motion--scrub .scrub-pin {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+  .motion.motion--scrub .scrub-fallback { display: none; }
+  .motion.motion--scrub canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 860px) {
+    .features-grid, .steps-grid { grid-template-columns: 1fr; gap: 32px; }
+    .hero-visual { gap: 6%; }
+  }
+  @media (max-width: 560px) {
+    .hero-visual .phone { width: 52%; }
+    .hero-visual .plant { width: 55%; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">דלגו לתוכן הראשי</a>
+
+  <main id="main">
+
+    <div class="top-scene">
+      <img class="hero-bg" src="assets/images/bg-gradient.png" alt="" aria-hidden="true" />
+
+      <header class="site-header">
+        <a href="#main" aria-label="Plantie - חזרה לראש הדף">
+          <img src="assets/images/logo.png" alt="Plantie" width="146" height="31" />
+        </a>
+      </header>
+
+      <!-- Hero -->
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div class="hero-copy">
+            <h1>תמונה אחת,<br />וסוף סוף אתם יודעים<br />מה הצמח הזה</h1>
+            <p class="lede">מצלמים את הצמח, מקבלים זיהוי והנחיות טיפול מותאמות!</p>
+            <a class="btn btn--lime" href="https://danaharati.github.io/plantie/">יאללה, בואו נתחיל!</a>
+          </div>
+          <div class="hero-visual">
+            <picture>
+              <source srcset="assets/images/phone-plant-mockup.webp" type="image/webp" />
+              <img src="assets/images/phone-plant-mockup.png" alt="הטלפון עם מסך הבית של פלנטי, לצד עציץ פילודנדרון לבבי אמיתי" width="1000" height="853" />
+            </picture>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Features -->
+    <section class="features" aria-label="למה פלנטי">
+      <div class="wrap features-grid">
+
+        <div class="feature">
+          <div class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M13.61,7.74v-2.04c0-.85.34-1.67.94-2.28.6-.6,1.42-.94,2.28-.94h1.21c.11,0,.21.04.28.12.08.08.12.18.12.28v1.21c0,.85-.34,1.67-.94,2.28-.6.6-1.42.94-2.28.94s-1.67.34-2.28.94c-.6.6-.94,1.42-.94,2.28,0,1.61.81,2.42.81,4.03,0,.87-.28,1.72-.81,2.42"/>
+              <path d="M7.61,6.52c-.75.07-1.46.34-2.06.79,0,.75.21,1.48.6,2.12.39.64.96,1.15,1.63,1.49s1.42.48,2.16.41c.75-.07,1.46-.34,2.06-.79,0-.75-.21-1.48-.6-2.12-.39-.64-.96-1.15-1.63-1.49-.67-.33-1.42-.48-2.16-.41Z"/>
+              <path d="M16.72,14.33l-1.72,7.19h-6.05l-1.61-7.19h9.38Z"/>
+            </svg>
+          </div>
+          <h3>מותאם בדיוק בשבילכם</h3>
+          <p>המלצות שמותאמות לצמח ולסביבה שלכם</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+              <path d="M20.33,8.07c-.33-.33-.78-.52-1.25-.52h-1.77c-.32,0-.63-.09-.91-.25-.27-.16-.5-.4-.65-.68l-.43-.8c-.15-.28-.38-.52-.65-.68-.27-.16-.59-.25-.91-.25h-3.53c-.32,0-.63.09-.91.25-.27.16-.5.4-.65.68l-.43.8c-.15.28-.38.52-.65.68-.27.16-.59.25-.91.25h-1.77c-.47,0-.92.19-1.25.52s-.52.79-.52,1.26v8.01c0,.47.19.92.52,1.26.33.33.78.52,1.25.52h14.16c.47,0,.92-.19,1.25-.52.33-.33.52-.79.52-1.26v-8.01c0-.47-.19-.92-.52-1.26ZM12,15.47c-1.44,0-2.6-1.17-2.6-2.6s1.17-2.6,2.6-2.6,2.6,1.17,2.6,2.6-1.17,2.6-2.6,2.6Z"/>
+            </svg>
+          </div>
+          <h3>מזהים ומטפלים</h3>
+          <p>זיהוי, הנחיות טיפול ואבחון בעיות</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
+              <circle cx="10.5" cy="10.5" r="6.5"/>
+              <line x1="20" y1="20" x2="15.2" y2="15.2"/>
+            </svg>
+          </div>
+          <h3>לא עוד חיפוש חד פעמי</h3>
+          <p>כל המידע נשמר אצלכם במקום אחד</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- אזור Video Scrubbing: רצף פריימים אמיתי (97 קובצי WebP) מתוך הסרטון של המשתמשת, מוצג
+         במסך מלא ומתקדם לפי גלילה (ראו script בסוף הקובץ). ללא JS / עם prefers-reduced-motion
+         מוצג רק הפריים הסטטי האחרון, בלי נעילת גלילה. -->
+    <section class="motion" aria-hidden="true">
+      <div class="scrub-pin">
+        <canvas id="scrub-canvas"></canvas>
+        <img class="scrub-fallback" id="scrub-fallback" src="assets/images/scrub/frame-0097.webp" alt="" />
+      </div>
+    </section>
+
+    <!-- Proof / testimonial -->
+    <section class="proof">
+      <div class="wrap">
+        <div class="proof-card">
+          <h2>הצמח גר איתכם. אתם לא באמת מכירים אותו.</h2>
+          <blockquote>
+            &ldquo;יש צמח ירוק גדול בסלון, עומד שם כבר שנתיים,<br />ואני חי איתו וממש לא יודע איך קוראים לו&rdquo;
+            <cite>מתוך ראיונות משתמשים שקדמו למוצר</cite>
+          </blockquote>
+        </div>
+        <p class="proof-note" style="margin-block-start:32px;">
+          מי שמגדל צמח בבית, לרוב לא באמת יודע איך לטפל נכון בצמח כשקורה משהו.<br />
+          <b>plantie הוא הפיתרון לזה.</b>
+        </p>
+      </div>
+    </section>
+
+    <!-- Steps -->
+    <section class="steps" aria-label="איך זה עובד">
+      <div class="wrap">
+        <div class="steps-head">
+          <h2>הכל מתחיל מצילום אחד</h2>
+          <p>בכמה צעדים פשוטים, אתם מקבלים את כל המידע שהצמח שלכם צריך</p>
+        </div>
+        <div class="steps-grid">
+          <div class="step-card step-card--01">
+            <span class="num">01</span>
+            <h3>מזהים</h3>
+            <p>מצלמים את הצמח, או בוחרים תמונה קיימת מהגלריה</p>
+          </div>
+          <div class="step-card step-card--02">
+            <span class="num">02</span>
+            <h3>מטפלים</h3>
+            <p>מוצאים מידע והנחיות מותאמות</p>
+          </div>
+          <div class="step-card step-card--03">
+            <span class="num">03</span>
+            <h3>מאבחנים</h3>
+            <p>עלים חומים? נופלים? בוחרים תסמין ומקבלים כיוון פעולה</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" aria-label="שאלות נפוצות">
+      <div class="wrap">
+        <h2>שאלות</h2>
+        <div class="faq-list">
+
+          <details class="faq-item">
+            <summary>איך הזיהוי בפועל עובד?
+              <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <p>מצלמים את הצמח, או בוחרים תמונה קיימת מהגלריה, והאפליקציה מזהה אותו ומציגה הנחיות טיפול מותאמות במיוחד אליו.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>מה קורה אם משהו לא בסדר עם הצמח (למשל עלים חומים)?
+              <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <p>בכרטיסיית הצמח יש רשימת תסמינים לבחירה - בוחרים את מה שרואים, ומקבלים הסבר וכיוון פעולה מותאם.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>על אילו סוגי צמחים האפליקציה עובדת?
+              <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <p>על מגוון רחב של צמחי בית וצמחי חוץ נפוצים, כל אחד עם הנחיות טיפול משלו.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>אני צריך לזכור להשקות או לעדכן משהו בעצמי?
+              <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <p>לא. המעקב פסיבי - כשמבקרים בכרטיסיית הצמח הוא מתעדכן אוטומטית, בלי תזכורות או לוח נפרד לנהל.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>אפשר לחפש צמח לפי שם, בלי לצלם?
+              <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <p>בגרסה הזו הדרך המרכזית היא זיהוי מצילום - זו הדרך שהכי טבעית למשתמשים, לפי המחקר שקדם לבניית האפליקציה.</p>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing: רוחב מלא של הדף (כמו בפיגמה), תמונת המדף בגודל טבעי/קטן, טקסט מיושר לימין -->
+    <section class="closing">
+      <div class="wrap closing-grid">
+        <div class="closing-copy">
+          <h2>מוכנים להכיר את הצמח שלכם?</h2>
+          <p>הורידו את האפליקציה שתתחילו לטפל נכון בצמחים שלכם כבר היום!</p>
+          <a class="btn btn--dark" href="https://danaharati.github.io/plantie/">יאללה, בואו נתחיל!</a>
+        </div>
+        <div class="closing-visual" aria-hidden="true">
+          <picture>
+            <source srcset="assets/images/plant-shelf.webp" type="image/webp" />
+            <img src="assets/images/plant-shelf.png" alt="" />
+          </picture>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // --- Video Scrubbing: רצף פריימים שמתקדם לפי גלילה, במקום נגן וידאו ---
+    (function () {
+      var section = document.querySelector('.motion');
+      var canvas = document.getElementById('scrub-canvas');
+      var fallback = document.getElementById('scrub-fallback');
+      if (!section || !canvas || !fallback || !canvas.getContext) return;
+
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduceMotion) return; // נשארים על פריים הסיום הסטטי, בלי נעילת גלילה
+
+      var FRAME_COUNT = 97;
+      var frames = new Array(FRAME_COUNT);
+      var loaded = 0;
+      var failed = 0;
+      var ctx = canvas.getContext('2d');
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var lastIndex = -1;
+      var ticking = false;
+
+      function frameSrc(i) {
+        var n = String(i + 1);
+        while (n.length < 4) n = '0' + n;
+        return 'assets/images/scrub/frame-' + n + '.webp';
+      }
+
+      function onFrameSettled() {
+        loaded++;
+        if (loaded === FRAME_COUNT) {
+          if (failed > FRAME_COUNT / 2) return; // רוב הפריימים נכשלו - נשארים על הפולבק
+          section.classList.add('motion--scrub');
+          resizeCanvas();
+          window.addEventListener('scroll', onScroll, { passive: true });
+          window.addEventListener('resize', resizeCanvas);
+        }
+      }
+
+      for (var i = 0; i < FRAME_COUNT; i++) {
+        (function (idx) {
+          var img = new Image();
+          img.onload = onFrameSettled;
+          img.onerror = function () { failed++; onFrameSettled(); };
+          img.src = frameSrc(idx);
+          frames[idx] = img;
+        })(i);
+      }
+
+      var CREAM = getComputedStyle(document.documentElement).getPropertyValue('--cream').trim() || '#F3F1ED';
+
+      function drawFrame(index) {
+        var img = frames[index];
+        if (!img || !img.complete || !img.naturalWidth) return;
+        if (index === lastIndex) return;
+        lastIndex = index;
+        var cw = canvas.width, ch = canvas.height;
+        var iw = img.naturalWidth, ih = img.naturalHeight;
+        // "contain" (לא "cover"): שומר על כל התוכן גלוי (כולל הטלפון שנכנס בגלילה)
+        // גם ביחסי מסך צרים כמו מובייל, ולא חותך אותו. הרקע של הפריימים כבר קרם, אז
+        // ה"letterbox" (המילוי מסביב) משתלב בלי קו הפרדה נראה.
+        var scale = Math.min(cw / iw, ch / ih);
+        var dw = iw * scale, dh = ih * scale;
+        var dx = (cw - dw) / 2, dy = (ch - dh) / 2;
+        ctx.fillStyle = CREAM;
+        ctx.fillRect(0, 0, cw, ch);
+        ctx.drawImage(img, dx, dy, dw, dh);
+      }
+
+      // כמה "מסכי פין" של גלילה מוקדשים לסקראב - פרופורציונלי לגובה הפין בפועל, כדי שלא
+      // ייווצר אזור גלילה ריק וארוך כשעל מובייל הפין נמוך משמעותית מ-100vh (בגלל aspect-ratio).
+      var SCROLL_MULTIPLIER = 3;
+
+      function resizeCanvas() {
+        var rect = canvas.getBoundingClientRect();
+        canvas.width = Math.round(rect.width * dpr);
+        canvas.height = Math.round(rect.height * dpr);
+        section.style.height = Math.round(rect.height * SCROLL_MULTIPLIER) + 'px';
+        lastIndex = -1;
+        drawFrame(currentIndex());
+      }
+
+      function currentIndex() {
+        // המרחק שבו הפין באמת "תקוע" הוא גובה המקטע פחות גובה הפין עצמו (לא גובה המסך המלא,
+        // כי בפין יש aspect-ratio ולא בהכרח 100vh - למשל במובייל הוא נמוך משמעותית מהמסך).
+        var rect = section.getBoundingClientRect();
+        var pinHeight = canvas.getBoundingClientRect().height || window.innerHeight;
+        var scrollable = rect.height - pinHeight;
+        var progress = scrollable > 0 ? (-rect.top) / scrollable : 0;
+        progress = Math.max(0, Math.min(1, progress));
+        return Math.round(progress * (FRAME_COUNT - 1));
+      }
+
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () {
+          drawFrame(currentIndex());
+          ticking = false;
+        });
+      }
+    })();
+  </script>
+
+</body>
+</html>
