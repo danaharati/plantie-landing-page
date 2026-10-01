@@ -45,6 +45,8 @@
     (https://danaharati.github.io/plantie/) - לפי בקשת המשתמשת, כדי שהכפתור יוביל קודם למסך
     הטעינה (splash) והתחברות, ולא ידלג ישירות למסך הבית.
 -->
+<!-- גרסה חלופית (2026-09-30): מבוססת על index.html, בלי לשנות אותו. אחרי "הכל מתחיל מצילום אחד" נוספו
+     "כרטיסיית צמח" (טקסט + שלושה כרטיסים אמיתיים) ו"למי זה מתאים"; אחריהם נשארו השאלות והפוטר הקיימים. -->
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8" />
@@ -206,6 +208,23 @@
     height: auto;
   }
 
+  /* ---------- Hero: swaying leaves ---------- */
+  .hv-stage { position: relative; width: min(100%, 560px); aspect-ratio: 2460 / 2137; }
+  .hv-stage .hv-scene { display: block; width: 100%; height: auto; }
+  .hv-stage .hv-leaf { position: absolute; display: block; height: auto; max-width: none; will-change: transform; animation: hv-sway var(--dur) ease-in-out var(--delay) infinite alternate; }
+  .hv-stage .hv-leaf--1 { left: 61.138%; top: 6.972%; width: 24.634%; transform-origin: 31.52% 22.36%; }
+  .hv-stage .hv-leaf--2 { left: 40.488%; top: 19.701%; width: 26.382%; transform-origin: 53.16% 10.00%; }
+  .hv-stage .hv-leaf--3 { left: 73.130%; top: 33.037%; width: 22.886%; transform-origin: 35.52% 19.97%; }
+  .hv-stage .hv-leaf--4 { left: 54.024%; top: 45.531%; width: 22.764%; transform-origin: 66.61% 20.77%; }
+  .hv-leaf--1 { --dur: 5.6s; --delay: -1.2s; --ang: 4deg; }
+  .hv-leaf--2 { --dur: 6.8s; --delay: -3.4s; --ang: 3.2deg; }
+  .hv-leaf--3 { --dur: 6.2s; --delay: -0.6s; --ang: 3.6deg; }
+  .hv-leaf--4 { --dur: 7.4s; --delay: -4.8s; --ang: 2.6deg; }
+  @keyframes hv-sway {
+    from { transform: rotate(calc(var(--ang) * -1)); }
+    to   { transform: rotate(var(--ang)); }
+  }
+
   /* ---------- Features band ---------- */
   .features {
     background: color-mix(in srgb, var(--lime-10) 76%, var(--cream) 24%);
@@ -240,7 +259,7 @@
   /* ---------- Proof / testimonial ---------- */
   .proof {
     padding-block: 64px;
-    background: var(--white);
+    background: var(--cream);
   }
   .proof-card {
     background: var(--dark-green-20);
@@ -282,7 +301,7 @@
   .proof-note b { font-weight: 700; }
 
   /* ---------- Steps ---------- */
-  .steps { padding-block: 64px; background: var(--white); }
+  .steps { padding-block: 24px 64px; background: var(--cream); }
   .steps-head { text-align: center; max-width: 640px; margin-inline: auto 0; margin-inline: auto; margin-block-end: 40px; }
   .steps-head h2 {
     font-size: clamp(26px, 5vw, 40px);
@@ -442,6 +461,102 @@
     .hero-visual .plant { width: 55%; }
   }
 
+  /* ---------- כרטיסיית צמח (סקשן חדש) ---------- */
+  .pcard { padding-block: 72px; background: color-mix(in srgb, var(--cream) 35%, var(--white) 65%); overflow-x: clip; }
+  .pcard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.75fr;
+    gap: clamp(28px, 5vw, 72px);
+    align-items: center;
+  }
+  .pcard-copy { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+  .pcard-copy h2 {
+    font-size: clamp(26px, 5vw, 40px);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--dark-green);
+  }
+  .pcard-copy > p { font-size: clamp(15px, 2.2vw, 19px); color: var(--dark-green); }
+  .pcard-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+  .pcard-list li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: clamp(15px, 2vw, 17px);
+    color: var(--dark-green);
+  }
+  .pcard-list li::before {
+    content: "";
+    flex: none;
+    width: 24px;
+    height: 24px;
+    margin-block-start: 2px;
+    border-radius: 50%;
+    background: var(--lime) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23073B1B' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / 14px no-repeat;
+  }
+
+  .pc-stage { container-type: inline-size; min-width: 0; }
+  .pc-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.4cqw;
+    align-items: start;
+    padding-block: 2cqw 4cqw;
+  }
+  .pc {
+    margin: 0;
+    border-radius: 24px;
+    box-shadow: 0 2px 6px rgba(7, 59, 27, .10), 0 16px 40px rgba(7, 59, 27, .22);
+    overflow: hidden;
+    background: var(--cream);
+    min-width: 0;
+  }
+  .pc:nth-child(odd) { margin-block-start: 5cqw; }
+  .pc img { display: block; width: 100%; height: auto; }
+  .pc-caption { text-align: center; font-size: 14px; color: var(--dark-green-80); margin-block-start: 8px; max-width: none; }
+
+  /* ---------- למי זה מתאים (סקשן חדש) ---------- */
+  .who { padding-block: 64px; background: color-mix(in srgb, var(--lime-10) 76%, var(--cream) 24%); }
+  .who h2 {
+    text-align: center;
+    font-size: clamp(26px, 5vw, 40px);
+    font-weight: 700;
+    color: var(--dark-green);
+    margin-block-end: 12px;
+  }
+  .who-sub { text-align: center; margin-inline: auto; margin-block-end: 40px; font-size: clamp(15px, 2.2vw, 19px); color: var(--dark-green); }
+  .who-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .who-card {
+    background: var(--white);
+    border-radius: 30px;
+    padding: 28px 22px 30px;
+    text-align: center;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .who-card img { width: 96px; height: 110px; object-fit: contain; margin-block-end: 6px; }
+  .who-card h3 { font-size: clamp(17px, 2.4vw, 21px); font-weight: 700; color: var(--dark-green); line-height: 1.3; }
+  .who-card p { font-size: clamp(14px, 1.8vw, 16px); color: var(--dark-green-80); line-height: 1.6; }
+
+  @media (max-width: 860px) {
+    .pcard-grid { grid-template-columns: 1fr; }
+    .who-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .pc-row {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 12px;
+      padding-block: 8px 16px;
+    }
+    .pc { flex: 0 0 72%; scroll-snap-align: center; margin-block-start: 0 !important; }
+    .pc-caption { margin-block-start: 0; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; animation: none !important; }
   }
@@ -471,10 +586,30 @@
             <a class="btn btn--lime" href="https://danaharati.github.io/plantie/">יאללה, בואו נתחיל!</a>
           </div>
           <div class="hero-visual">
-            <picture>
-              <source srcset="assets/images/phone-plant-mockup.webp" type="image/webp" />
-              <img src="assets/images/phone-plant-mockup.png" alt="הטלפון עם מסך הבית של פלנטי, לצד עציץ פילודנדרון לבבי אמיתי" width="1000" height="853" />
-            </picture>
+            <!-- הטלפון, העציץ והצל הם תמונה אחת; ארבעת העלים הגדולים הם שכבות נפרדות מעליה
+                 ומתנדנדים בזווית קטנה סביב נקודת החיבור שלהם (CSS בלבד, מכובה תחת prefers-reduced-motion). -->
+            <div class="hv-stage">
+              <picture>
+                <source srcset="assets/images/hero-scene.webp" type="image/webp" />
+                <img class="hv-scene" src="assets/images/hero-scene.png" alt="הטלפון עם מסך הבית של פלנטי, לצד עציץ פילודנדרון לבבי אמיתי" width="1230" height="1068" />
+              </picture>
+              <picture>
+                <source srcset="assets/images/hero-leaf0.webp" type="image/webp" />
+                <img class="hv-leaf hv-leaf--1" src="assets/images/hero-leaf0.png" alt="" aria-hidden="true" width="303" height="318" />
+              </picture>
+              <picture>
+                <source srcset="assets/images/hero-leaf1.webp" type="image/webp" />
+                <img class="hv-leaf hv-leaf--2" src="assets/images/hero-leaf1.png" alt="" aria-hidden="true" width="324" height="330" />
+              </picture>
+              <picture>
+                <source srcset="assets/images/hero-leaf2.webp" type="image/webp" />
+                <img class="hv-leaf hv-leaf--3" src="assets/images/hero-leaf2.png" alt="" aria-hidden="true" width="282" height="308" />
+              </picture>
+              <picture>
+                <source srcset="assets/images/hero-leaf3.webp" type="image/webp" />
+                <img class="hv-leaf hv-leaf--4" src="assets/images/hero-leaf3.png" alt="" aria-hidden="true" width="280" height="286" />
+              </picture>
+            </div>
           </div>
         </div>
       </section>
@@ -569,6 +704,76 @@
             <span class="num">03</span>
             <h3>מאבחנים</h3>
             <p>עלים חומים? נופלים? בוחרים תסמין ומקבלים כיוון פעולה</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- כרטיסיית צמח (חדש): טקסט + צילומי מסך אמיתיים של עמודי הצמח באפליקציה (https://danaharati.github.io/plantie/), כל אחד במלואו, מהתמונה ועד הכפתור התחתון -->
+    <section class="pcard" aria-label="כרטיסיית צמח">
+      <div class="wrap pcard-grid">
+        <div class="pcard-copy">
+          <h2>כרטיסיית צמח אחת, וכל מה שצריך לדעת עליו</h2>
+          <p>אחרי הזיהוי, כל צמח מקבל כרטיסייה משלו. זה המסך שאליו חוזרים כשצריך להבין מה לעשות.</p>
+          <ul class="pcard-list">
+            <li>שם הצמח בעברית ובלטינית</li>
+            <li>מידע מהיר: כמה מים, כמה אור, ובאיזו טמפרטורה</li>
+            <li>רמת קושי ברורה, מ"למתחילים" ועד "דורש השקעה"</li>
+            <li>אבחון בעיה: בוחרים את מה שרואים ומקבלים הסבר וכיוון פעולה</li>
+            <li>מעקב שקט: כל כניסה לכרטיסייה מסמנת שבדקתם את הצמח</li>
+          </ul>
+        </div>
+
+        <div class="pc-stage">
+          <div class="pc-row">
+
+            <figure class="pc">
+              <picture>
+                <source srcset="assets/images/card-prayer-plant.webp" type="image/webp" />
+                <img src="assets/images/card-prayer-plant.jpg" alt="כרטיסיית צמח תפילה באפליקציה: תמונה, שם, מידע מהיר, אופן הטיפול, טיפ ואבחון הבעיה" width="736" height="2664" loading="lazy" />
+              </picture>
+            </figure>
+
+            <figure class="pc">
+              <picture>
+                <source srcset="assets/images/card-philodendron.webp" type="image/webp" />
+                <img src="assets/images/card-philodendron.jpg" alt="כרטיסיית פילודנדרון לבבי באפליקציה: תמונה, שם, מידע מהיר, אופן הטיפול, טיפ ואבחון הבעיה" width="736" height="2830" loading="lazy" />
+              </picture>
+            </figure>
+
+            <figure class="pc">
+              <picture>
+                <source srcset="assets/images/card-croton.webp" type="image/webp" />
+                <img src="assets/images/card-croton.jpg" alt="כרטיסיית קרוטון באפליקציה: תמונה, שם, מידע מהיר, אופן הטיפול, טיפ ואבחון הבעיה" width="736" height="2664" loading="lazy" />
+              </picture>
+            </figure>
+
+          </div>
+          <p class="pc-caption">כרטיסיות צמח מתוך האפליקציה</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- למי זה מתאים (חדש): מבוסס על הפרסונות והקהל ב-docs/SUMMERIZED_PRD.md -->
+    <section class="who" aria-label="למי זה מתאים">
+      <div class="wrap">
+        <h2>למי זה מתאים?</h2>
+        <p class="who-sub">לכל מי שיש לו צמח בבית ושאלה עליו</p>
+        <div class="who-grid">
+          <div class="who-card">
+            <img src="assets/images/plant-boston-fern.png" alt="" loading="lazy" />
+            <h3>קיבלתם צמח, ולא בחרתם אותו</h3>
+            <p>הוא הגיע עם השותפה, מההורים או במתנה. אתם מטפלים בו, אבל לא יודעים מה הוא. צילום אחד נותן לו שם, ומשם אפשר להתחיל.</p>
+          </div>
+          <div class="who-card">
+            <img src="assets/images/plant-heartleaf-philodendron.png" alt="" loading="lazy" />
+            <h3>נטשתם תזכורות ואפליקציות בעבר</h3>
+            <p>אין כאן לוח לנהל. כשנכנסים לכרטיסיית הצמח, הוא מסומן אוטומטית כנבדק.</p>
+          </div>
+          <div class="who-card">
+            <img src="assets/images/plant-jade-plant.png" alt="" loading="lazy" />
+            <h3>עברתם דירה והבית התמלא בצמחים</h3>
+            <p>כל הצמחים על מדף אחד, ותמיד רואים מי צריך תשומת לב היום.</p>
           </div>
         </div>
       </div>
@@ -738,6 +943,7 @@
         });
       }
     })();
+  
   </script>
 
 </body>
